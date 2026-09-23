@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Securix Security Dashboard"
+description = "A security operations dashboard for analyzing threats, phishing indicators, emails, forensic cases, evidence, reports, and activity through the Securix backend."
+version = "1.0.0"
+id = "artifacts/securix"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19954
+
+[services.development]
+run = "pnpm --filter @workspace/securix run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/securix", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/securix/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19954"
+BASE_PATH = "/"

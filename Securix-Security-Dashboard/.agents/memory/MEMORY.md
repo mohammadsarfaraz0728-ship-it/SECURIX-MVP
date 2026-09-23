@@ -1,0 +1,1 @@
+- [Generated client typings](generated-client-typings.md) — Orval output uses Headers.entries(), so shared lib configs need DOM iterable typings.
